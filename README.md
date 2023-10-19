@@ -50,4 +50,3 @@ GET: Obter as solicitações pendentes:<br />
 <strong>Segurança:</strong> A API atualmente não possui autenticação ou autorização. Seria essencial adicionar medidas de segurança para garantir que apenas clientes autorizados possam adicionar solicitações e que apenas administradores possam visualizar o status das filas.
 
 
-<strong>Conclusão</strong>: O software desenvolvido atende bem ao cenário proposto. No entanto, para um uso real, devemos considerar as melhorias e considerações mencionadas.
