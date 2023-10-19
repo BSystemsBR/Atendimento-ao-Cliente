@@ -6,8 +6,10 @@ Central de relacionamento para atender diversos tipos de solicitações dos clie
 POST: Entrada de solicitações:<br />
 /api/solicitacoes
 
-Exemplo de post:<br />
+Exemplos de post:<br />
 { "assunto": "Problemas com cartão" }
+{ "assunto": "Contratação de empréstimo" }
+{ "assunto": "Outros assuntos" }
 
 GET: Obter o status das filas:<br />
 /api/solicitacoes/status
