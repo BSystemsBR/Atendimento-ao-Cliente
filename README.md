@@ -1,10 +1,10 @@
-# Atendimento-ao-Cliente
+# Atendimento ao Cliente
 Central de relacionamento para atender diversos tipos de solicitações dos clientes. Os principais tipos de solicitações são: Problemas com cartão e contratação de empréstimo. 
 
 <h3>Utilização:</h3>
 
 POST: Entrada de solicitações:<br />
-/api/solicitacoes/pendentes
+/api/solicitacoes
 
 Exemplo de post:<br />
 { "assunto": "Problemas com cartão" }
