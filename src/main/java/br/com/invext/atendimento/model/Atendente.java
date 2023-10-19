@@ -1,11 +1,9 @@
 package br.com.invext.atendimento.model;
 
 public class Atendente {
-    private String time;
     private int clientesAtendendo;
 
-    public Atendente(String time) {
-        this.time = time;
+    public Atendente() {
         this.clientesAtendendo = 0;
     }
 
@@ -21,7 +19,4 @@ public class Atendente {
         this.clientesAtendendo--;
     }
 
-    public String getTime() {
-        return time;
-    }
 }

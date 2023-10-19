@@ -2,7 +2,7 @@ package br.com.invext.atendimento.service;
 
 import br.com.invext.atendimento.model.Atendente;
 import br.com.invext.atendimento.model.Solicitacao;
-import br.com.invext.atendimento.model.TipoSolicitacao;
+import br.com.invext.atendimento.model.SolicitacaoResposta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,43 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+
 public class DistribuidorSolicitacoes {
+
+    public SolicitacaoResposta distribuirSolicitacao(Solicitacao solicitacao) {
+        SolicitacaoResposta response = new SolicitacaoResposta();
+        response.setStatus("Solicitação recebida");
+        response.setAssunto(solicitacao.getAssunto());
+
+        switch (solicitacao.getAssunto()) {
+            case "Problemas com cartão":
+                response.setAtendimentoStatus(encaminharOuEnfileirar(solicitacao, atendentesCartoes, filaCartoes));
+                response.setPosicaoNaFila(filaCartoes.size());
+                break;
+            case "Contratação de empréstimo":
+                response.setAtendimentoStatus(encaminharOuEnfileirar(solicitacao, atendentesEmprestimos, filaEmprestimos));
+                response.setPosicaoNaFila(filaEmprestimos.size());
+                break;
+            default:
+                response.setAtendimentoStatus(encaminharOuEnfileirar(solicitacao, atendentesOutros, filaOutros));
+                response.setPosicaoNaFila(filaOutros.size());
+                break;
+        }
+
+        return response;
+    }
+
+    private String encaminharOuEnfileirar(Solicitacao solicitacao, List<Atendente> atendentes, Queue<Solicitacao> fila) {
+        for (Atendente atendente : atendentes) {
+            if (atendente.estaDisponivel()) {
+                atendente.iniciarAtendimento();
+                agendarFinalizacaoAtendimento(atendente, fila); // Adicione esta linha
+                return "Encaminhado para um atendente";
+            }
+        }
+        fila.add(solicitacao);
+        return "Adicionado à fila";
+    }
 
     private final List<Atendente> atendentesCartoes;
     private final List<Atendente> atendentesEmprestimos;
@@ -29,9 +65,9 @@ public class DistribuidorSolicitacoes {
         atendentesOutros = new ArrayList<>();
 
         for (int i = 0; i < qtdAtendentesPorTime; i++) {
-            atendentesCartoes.add(new Atendente("Cartões"));
-            atendentesEmprestimos.add(new Atendente("Empréstimos"));
-            atendentesOutros.add(new Atendente("Outros Assuntos"));
+            atendentesCartoes.add(new Atendente());
+            atendentesEmprestimos.add(new Atendente());
+            atendentesOutros.add(new Atendente());
         }
 
         filaCartoes = new LinkedList<>();
@@ -39,38 +75,6 @@ public class DistribuidorSolicitacoes {
         filaOutros = new LinkedList<>();
     }
 
-    public void distribuirSolicitacao(Solicitacao solicitacao) {
-        TipoSolicitacao tipo = TipoSolicitacao.OUTROS; // default
-        for (TipoSolicitacao t : TipoSolicitacao.values()) {
-            if (t.getDescricao().equals(solicitacao.getAssunto())) {
-                tipo = t;
-                break;
-            }
-        }
-
-        switch (tipo) {
-            case CARTAO:
-                encaminharOuEnfileirar(solicitacao, atendentesCartoes, filaCartoes);
-                break;
-            case EMPRESTIMO:
-                encaminharOuEnfileirar(solicitacao, atendentesEmprestimos, filaEmprestimos);
-                break;
-            case OUTROS:
-                encaminharOuEnfileirar(solicitacao, atendentesOutros, filaOutros);
-                break;
-        }
-    }
-
-    private void encaminharOuEnfileirar(Solicitacao solicitacao, List<Atendente> atendentes, Queue<Solicitacao> fila) {
-        for (Atendente atendente : atendentes) {
-            if (atendente.estaDisponivel()) {
-                atendente.iniciarAtendimento();
-                agendarFinalizacaoAtendimento(atendente, fila);
-                return;
-            }
-        }
-        fila.add(solicitacao);
-    }
 
     private void agendarFinalizacaoAtendimento(Atendente atendente, Queue<Solicitacao> fila) {
         scheduler.schedule(() -> {
