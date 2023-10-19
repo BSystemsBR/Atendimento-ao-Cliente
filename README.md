@@ -7,9 +7,9 @@ POST: Entrada de solicitações:<br />
 /api/solicitacoes
 
 Exemplos de post:<br />
-{ "assunto": "Problemas com cartão" }
-{ "assunto": "Contratação de empréstimo" }
-{ "assunto": "Outros assuntos" }
+{ "assunto": "Problemas com cartão" } <br />
+{ "assunto": "Contratação de empréstimo" } <br />
+{ "assunto": "Outros assuntos" } <br /><br />
 
 GET: Obter o status das filas:<br />
 /api/solicitacoes/status
