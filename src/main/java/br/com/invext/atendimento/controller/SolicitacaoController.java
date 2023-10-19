@@ -5,7 +5,6 @@ import br.com.invext.atendimento.model.ApiError;
 import br.com.invext.atendimento.model.Solicitacao;
 import br.com.invext.atendimento.model.SolicitacaoResposta;
 import br.com.invext.atendimento.service.DistribuidorSolicitacoes;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
