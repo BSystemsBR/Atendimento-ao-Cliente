@@ -13,25 +13,29 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/solicitacoes")
 public class SolicitacaoController {
+    // Instância do serviço de distribuição de solicitações
     private final DistribuidorSolicitacoes distribuidor;
 
     public SolicitacaoController() {
-        this.distribuidor = new DistribuidorSolicitacoes(1); // Exemplo com 1 atendente por time.
+        // Inicializa o distribuidor com 1 atendente por time
+        this.distribuidor = new DistribuidorSolicitacoes(1);
     }
 
+    // Endpoint para adicionar uma nova solicitação
     @PostMapping
     public ResponseEntity<SolicitacaoResposta> adicionarSolicitacao(@RequestBody Solicitacao solicitacao) {
         SolicitacaoResposta response = distribuidor.distribuirSolicitacao(solicitacao);
         return ResponseEntity.ok(response);
     }
 
+    // Endpoint para obter solicitações pendentes
     @GetMapping("/pendentes")
     public ResponseEntity<List<Solicitacao>> solicitacoesPendentes() {
-        // Supondo um método para obter as solicitações pendentes no serviço de distribuição
         List<Solicitacao> pendentes = distribuidor.obterSolicitacoesPendentes();
         return ResponseEntity.ok(pendentes);
     }
 
+    // Endpoint para obter o status das filas de atendimento
     @GetMapping("/status")
     public ResponseEntity<Map<String, Integer>> statusDasFilas() {
         HashMap<String, Integer> status = new HashMap<>();
@@ -40,5 +44,4 @@ public class SolicitacaoController {
         status.put("Fila Outros Assuntos", distribuidor.tamanhoFilaOutros());
         return ResponseEntity.ok(status);
     }
-
 }

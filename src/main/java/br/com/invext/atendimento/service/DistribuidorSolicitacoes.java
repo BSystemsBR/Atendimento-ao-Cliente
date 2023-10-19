@@ -14,6 +14,14 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 
+/**
+ * Este é o serviço principal que lida com a lógica de distribuição das solicitações. Ele verifica a disponibilidade
+ * dos atendentes, encaminha as solicitações para os atendentes disponíveis ou as coloca em fila se todos os atendentes
+ * estiverem ocupados. Também simula a finalização de um atendimento após um período.
+ *
+ * @author Uilian Barboza
+ */
+
 public class DistribuidorSolicitacoes {
 
     public SolicitacaoResposta distribuirSolicitacao(Solicitacao solicitacao) {
