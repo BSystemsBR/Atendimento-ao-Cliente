@@ -51,7 +51,7 @@ public class DistribuidorSolicitacoes {
         for (Atendente atendente : atendentes) {
             if (atendente.estaDisponivel()) {
                 atendente.iniciarAtendimento();
-                agendarFinalizacaoAtendimento(atendente, fila); // Adicione esta linha
+                agendarFinalizacaoAtendimento(atendente, fila);
                 return "Encaminhado para um atendente";
             }
         }
