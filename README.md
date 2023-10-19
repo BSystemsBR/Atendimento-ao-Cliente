@@ -24,11 +24,11 @@ GET: Obter as solicitações pendentes:<br />
 
 <strong>2. Times de Atendimento:</strong> Organizar os atendentes em três times: Cartões, Empréstimos e Outros Assuntos.
 
-<strong>3. Distribuição de Solicitações:</strong> O software distribui as solicitações para o time correto com base no assunto da solicitação.
+<strong>3. Distribuição de Solicitações:</strong> Distribuir as solicitações para o time correto com base no assunto da solicitação.
 
 <strong>4. Política de Atendimento:</strong> Cada atendente pode atender até 3 pessoas simultaneamente. Se todos os atendentes de um time estiverem ocupados, as solicitações são enfileiradas e distribuídas assim que um atendente estiver disponível.
 
-<strong>5. API REST:</strong> O software disponibiliza uma API REST para adicionar solicitações, obter o status das filas e visualizar solicitações pendentes.
+<strong>5. API REST:</strong> Disponibiliza uma API REST para adicionar solicitações, obter o status das filas e visualizar solicitações pendentes.
 
 <strong>6. Persistência:</strong> O software não persiste os dados, conforme solicitado.
 
