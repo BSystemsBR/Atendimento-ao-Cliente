@@ -43,7 +43,7 @@ GET /api/solicitacoes/pendentes<br /><br />
 
 ## Algumas considerações:
 
-- **Simulação de Atendimento:** Quando uma solicitação é distribuída para um atendente, ela é considerada "atendida" após 1 minuto. Em um cenário real, o atendimento levaria algum tempo. Uma melhoria seria tornar a finalização do atendimento manual e liberar o atendente após essa conclusão;
+- **Simulação de Atendimento:** Quando uma solicitação é distribuída para um atendente, ela é considerada "atendida" após 1 minuto. Em um cenário real, o atendimento levaria algum tempo. Uma melhoria seria tornar manual a finalização do atendimento e liberar o atendente após essa conclusão;
 
 - **Notificações:** Seria útil notificar o cliente quando sua solicitação estiver sendo atendida ou se houver algum atraso significativo;
 
