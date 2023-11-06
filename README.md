@@ -40,19 +40,3 @@ GET /api/solicitacoes/pendentes<br /><br />
 1. **Persistência:** O software não persiste os dados;<br /><br />
 1. **Linguagem:** O software foi desenvolvido em Java.<br /><br />
 
-
-## Algumas considerações:
-
-- **Simulação de Atendimento:** Quando uma solicitação é distribuída para um atendente, ela é considerada "atendida" após 1 minuto. Em um cenário real, o atendimento levaria algum tempo. Uma melhoria seria tornar manual a finalização do atendimento e liberar o atendente após essa conclusão;
-
-- **Notificações:** Seria útil notificar o cliente quando sua solicitação estiver sendo atendida ou se houver algum atraso significativo;
-
-- **Escalabilidade:** Se o número de solicitações for muito alto, pode ser necessário considerar a escalabilidade do software, talvez usando uma abordagem baseada em eventos ou mensagens;
-
-- **Persistência:** Embora o desafio não exija persistência, em um cenário real, seria essencial persistir as solicitações e o status dos atendentes para garantir que nenhuma solicitação seja perdida em caso de falha do sistema;
-
-- **Testes:** Foi implementado um teste simples, em um cenário real, seria importante ter uma cobertura de testes mais completa, incluindo testes de integração e testes de carga;
-
-- **Segurança:** A API atualmente não possui autenticação ou autorização. Seria essencial adicionar medidas de segurança para garantir que apenas clientes autorizados possam adicionar solicitações e que apenas administradores possam visualizar o status das filas.
-
-
